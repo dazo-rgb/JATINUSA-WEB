@@ -46,32 +46,49 @@ function switchTab(tab) {
   if (!tabLogin || !tabRegister || !formLogin || !formRegister) return;
 
   if (tab === "register") {
-    // Styling Navigasi
     tabRegister.className = "pb-2 border-bottom border-dark border-3 text-dark-brown fw-bold cursor-pointer";
     tabLogin.className = "pb-2 text-secondary me-4 fw-bold cursor-pointer";
-
-    // Munculkan Register (fade-in)
     formRegister.style.opacity = "1";
     formRegister.style.visibility = "visible";
     formRegister.style.pointerEvents = "auto";
-
-    // Sembunyikan Login (fade-out)
     formLogin.style.opacity = "0";
     formLogin.style.visibility = "hidden";
     formLogin.style.pointerEvents = "none";
   } else {
-    // Styling Navigasi
     tabLogin.className = "pb-2 border-bottom border-dark border-3 text-dark-brown me-4 fw-bold cursor-pointer";
     tabRegister.className = "pb-2 text-secondary fw-bold cursor-pointer";
-
-    // Munculkan Login (fade-in)
     formLogin.style.opacity = "1";
     formLogin.style.visibility = "visible";
     formLogin.style.pointerEvents = "auto";
-
-    // Sembunyikan Register (fade-out)
     formRegister.style.opacity = "0";
     formRegister.style.visibility = "hidden";
     formRegister.style.pointerEvents = "none";
   }
 }
+
+// FITUR BARU: Mengarahkan ke halaman kontak dengan membawa data pesan
+function redirectToContact() {
+  const jenis = document.getElementById("jenis").value;
+  const ukuran = document.getElementById("ukuran").value;
+  const finishing = document.getElementById("finishing").value;
+  const hasilEstimasi = document.getElementById("hasilEstimasi").innerText;
+
+  // Susun format pesan yang akan dikirim
+  const pesan = `Halo Jatinusa,\n\nSaya ingin konsultasi dan request quote untuk pembuatan custom furniture dengan rincian berikut:\n- Jenis Furniture: ${jenis}\n- Ukuran: ${ukuran}\n- Finishing: ${finishing}\n- Estimasi Harga: ${hasilEstimasi}\n\nMohon informasi lebih lanjut mengenai proses pemesanan. Terima kasih.`;
+
+  // Encode pesan ke format URL lalu pindah halaman
+  window.location.href = "contact.html?pesan=" + encodeURIComponent(pesan);
+}
+
+// FITUR BARU: Menangkap pesan dari URL saat halaman dimuat (khusus contact.html)
+window.addEventListener("DOMContentLoaded", () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const pesanDariURL = urlParams.get("pesan");
+
+  if (pesanDariURL) {
+    const pesanInput = document.getElementById("pesanInput");
+    if (pesanInput) {
+      pesanInput.value = pesanDariURL; // Isi otomatis textarea dengan pesan dari URL
+    }
+  }
+});

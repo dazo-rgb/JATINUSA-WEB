@@ -92,3 +92,26 @@ h6 {
     min-height: 250px;
   }
 }
+
+/* Banner & Card untuk Halaman Contact */
+.contact-banner {
+  background-color: #5a3825; /* Warna dasar penahan kedip */
+  background-image: url("../images/workshop.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100%;
+  position: relative;
+}
+
+.contact-card-box {
+  background: rgba(90, 56, 37, 0.85);
+  border-top: 4px solid #c49a5a;
+  backdrop-filter: blur(5px);
+}
+
+@media (max-width: 991px) {
+  .contact-banner {
+    min-height: 300px;
+  }
+}

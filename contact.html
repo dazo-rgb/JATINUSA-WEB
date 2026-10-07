@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jatinusa | Contact Us</title>
+    <!-- Preload gambar agar langsung dimuat tanpa delay -->
+    <link rel="preload" href="images/outdoor.jpg" as="image" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
@@ -11,7 +13,7 @@
     <nav class="navbar navbar-expand-lg bg-cream border-bottom py-3">
       <div class="container">
         <a class="navbar-brand fs-4 fw-bold text-dark-brown" href="index.html">JATINUSA</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-toggle="navbarNav">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -36,40 +38,52 @@
         <p class="text-secondary small px-3">Kami siap membantu Anda untuk konsultasi.</p>
       </div>
 
-      <div class="row bg-warm-white p-3 p-lg-5 rounded-4 shadow-sm">
-        <div class="col-lg-5 col-12 mb-5 mb-lg-0 pe-lg-5 text-center text-lg-start">
-          <h4 class="mb-4 fw-bold fs-5 fs-lg-4">Informasi Kontak</h4>
-          <div class="mb-3">
-            <h6 class="fw-bold mb-1 fs-6">Alamat</h6>
-            <p class="text-secondary small">Jl. Raya Mebel No. 12, Bekasi, Jawa Barat</p>
-          </div>
-          <div class="mb-3">
-            <h6 class="fw-bold mb-1 fs-6">Telepon</h6>
-            <p class="text-secondary small">0812 3456 7890</p>
-          </div>
-          <div class="mb-3">
-            <h6 class="fw-bold mb-1 fs-6">Email</h6>
-            <p class="text-secondary small">hello@jatinusa.co.id</p>
-          </div>
-        </div>
-        <!-- Gunakan border pembatas hanya saat di layar Laptop (lg) -->
-        <div class="col-lg-7 col-12 ps-lg-5 border-start-0 border-lg-start border-secondary-subtle">
-          <h4 class="mb-4 fw-bold fs-5 fs-lg-4 text-center text-lg-start">Kirim Pesan</h4>
-          <form>
-            <div class="mb-3">
-              <label class="form-label small fw-semibold">Nama</label>
-              <input type="text" class="form-control bg-light" placeholder="Masukkan nama" />
+      <!-- Class shadow-lg sudah dihapus dari div di bawah ini -->
+      <div class="card border-0 rounded-4 overflow-hidden mx-auto mb-5" style="max-width: 1000px">
+        <div class="row g-0 align-items-stretch">
+          <!-- Sisi Kiri: Informasi Kontak dengan Background Full dan Overlay Gelap -->
+          <div class="col-lg-5 p-4 p-lg-5 text-white d-flex flex-column justify-content-center position-relative" style="background-color: #5a3825; z-index: 1">
+            <!-- Layer Gambar Background -->
+            <div class="position-absolute top-0 start-0 w-100 h-100" style="background: url(&quot;images/outdoor.jpg&quot;) center/cover no-repeat; z-index: -2"></div>
+
+            <!-- Layer Overlay Warna Cokelat Transparan -->
+            <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(90, 56, 37, 0.85); z-index: -1"></div>
+
+            <!-- Konten Teks -->
+            <h4 class="mb-4 fw-bold fs-4 text-white position-relative">Informasi Kontak</h4>
+            <div class="mb-4 position-relative">
+              <h6 class="fw-bold mb-1 fs-6 text-white">Alamat</h6>
+              <p class="small text-white opacity-75 mb-0">Jl. Raya Mebel No. 12, Bekasi, Jawa Barat</p>
             </div>
-            <div class="mb-3">
-              <label class="form-label small fw-semibold">Email</label>
-              <input type="email" class="form-control bg-light" placeholder="Masukkan email" />
+            <div class="mb-4 position-relative">
+              <h6 class="fw-bold mb-1 fs-6 text-white">Telepon</h6>
+              <p class="small text-white opacity-75 mb-0">0812 3456 7890</p>
             </div>
-            <div class="mb-4">
-              <label class="form-label small fw-semibold">Pesan</label>
-              <textarea class="form-control bg-light" rows="4" placeholder="Tulis pesan..."></textarea>
+            <div class="mb-0 position-relative">
+              <h6 class="fw-bold mb-1 fs-6 text-white">Email</h6>
+              <p class="small text-white opacity-75 mb-0">hello@jatinusa.co.id</p>
             </div>
-            <button type="button" class="btn btn-jatinusa w-100 py-2 fw-bold">Kirim Pesan</button>
-          </form>
+          </div>
+
+          <!-- Sisi Kanan: Form Kirim Pesan dengan Ruang Lebih Lega -->
+          <div class="col-lg-7 bg-warm-white p-4 p-lg-5 d-flex flex-column justify-content-center">
+            <h4 class="mb-4 fw-bold fs-4 text-dark-brown">Kirim Pesan</h4>
+            <form>
+              <div class="mb-3">
+                <label class="form-label small fw-semibold">Nama</label>
+                <input type="text" class="form-control bg-light py-2" placeholder="Masukkan nama" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label small fw-semibold">Email</label>
+                <input type="email" class="form-control bg-light py-2" placeholder="Masukkan email" />
+              </div>
+              <div class="mb-4">
+                <label class="form-label small fw-semibold">Pesan</label>
+                <textarea id="pesanInput" class="form-control bg-light" rows="5" placeholder="Tulis pesan..."></textarea>
+              </div>
+              <button type="button" class="btn btn-jatinusa w-100 py-2 fw-bold">Kirim Pesan</button>
+            </form>
+          </div>
         </div>
       </div>
     </main>
@@ -77,6 +91,7 @@
     <footer class="bg-dark-brown text-white py-4 mt-5 text-center">
       <p class="mb-0 small">© 2026 Jatinusa. Crafted by Nature, Made to Last.</p>
     </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
   </body>
