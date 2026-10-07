@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jatinusa | Estimator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-cream border-bottom py-3">
+      <div class="container">
+        <a class="navbar-brand fs-4 fw-bold text-dark-brown" href="index.html">JATINUSA</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-toggle="navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto gap-2 gap-lg-3 my-3 my-lg-0 text-center">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+            <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            <li class="nav-item"><a class="nav-link active" href="estimator.html">Estimator</a></li>
+          </ul>
+          <div class="text-center">
+            <a href="login.html" class="btn btn-jatinusa px-4">Login</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container py-4 py-lg-5">
+      <div class="text-center mb-4 mb-lg-5">
+        <h2 class="fw-bold fs-3 fs-lg-2">Custom Furniture Estimator</h2>
+        <p class="text-secondary small px-3">Dapatkan estimasi harga untuk furniture custom sesuai kebutuhan Anda.</p>
+      </div>
+
+      <div class="row align-items-center bg-warm-white p-3 p-lg-5 rounded-4 shadow-sm">
+        <div class="col-lg-6 col-12 pe-lg-5 mb-4 mb-lg-0">
+          <form id="estimatorForm">
+            <div class="mb-3">
+              <label class="form-label fw-semibold small">Jenis Furniture</label>
+              <select class="form-select bg-light" id="jenis" onchange="calculateEstimation()">
+                <option value="Dining Table">Dining Table</option>
+                <option value="Bed Frame">Bed Frame</option>
+                <option value="TV Cabinet">TV Cabinet</option>
+                <option value="Wardrobe">Wardrobe</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-semibold small">Ukuran</label>
+              <select class="form-select bg-light" id="ukuran" onchange="calculateEstimation()">
+                <option value="Medium (150 x 80 cm)">Medium (150 x 80 cm)</option>
+                <option value="Small (100 x 60 cm)">Small (100 x 60 cm)</option>
+                <option value="Large (200 x 100 cm)">Large (200 x 100 cm)</option>
+              </select>
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-semibold small">Finishing</label>
+              <select class="form-select bg-light" id="finishing" onchange="calculateEstimation()">
+                <option value="Natural (Matte)">Natural (Matte)</option>
+                <option value="Glossy">Glossy</option>
+                <option value="Rustic">Rustic</option>
+              </select>
+            </div>
+
+            <div class="bg-cream p-4 rounded-3 border text-center">
+              <p class="mb-1 text-secondary small">Estimasi Harga</p>
+              <h3 class="fw-bold text-dark-brown mb-3 fs-4 fs-lg-3" id="hasilEstimasi">Rp 7.500.000</h3>
+              <button type="button" class="btn btn-jatinusa w-100 py-2 fw-bold">Request Quote</button>
+            </div>
+          </form>
+        </div>
+        <!-- Gambar disembunyikan di HP karena form sangat memakan layar, akan muncul di Tablet/Laptop -->
+        <div class="col-lg-6 d-none d-md-block text-center">
+          <img src="images/dining-table.jpg" class="img-fluid rounded-4 shadow-sm w-100" style="object-fit: cover; aspect-ratio: 1/1" alt="Estimator Reference" />
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-dark-brown text-white py-4 mt-5 text-center">
+      <p class="mb-0 small">© 2026 Jatinusa. Crafted by Nature, Made to Last.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+      window.onload = calculateEstimation;
+    </script>
+  </body>
+</html>
