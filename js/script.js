@@ -29,10 +29,15 @@ function saveCart(cart) {
   updateCartBadge();
 }
 
+// Membuka / Menutup Panel Keranjang (Dengan Efek Smooth Animation)
 function toggleCartPanel() {
-  const panel = document.getElementById("cartPanel");
-  if (panel) {
-    panel.classList.toggle("d-none");
+  const collapseElement = document.getElementById("collapseCart");
+  if (collapseElement) {
+    // Gunakan API bawaan Bootstrap untuk memicu animasi secara halus
+    const bsCollapse = bootstrap.Collapse.getOrCreateInstance(collapseElement);
+    bsCollapse.toggle();
+
+    // Render ulang isi keranjang saat animasi berjalan
     renderCart();
   }
 }
@@ -77,13 +82,14 @@ function addToCart(id) {
   saveCart(cart);
   alert(`"${product.name}" berhasil ditambahkan ke keranjang!`);
 
-  const panel = document.getElementById("cartPanel");
-  if (panel && !panel.classList.contains("d-none")) {
+  // Jika panel sedang terbuka (show), render ulang agar data update langsung
+  const panel = document.getElementById("collapseCart");
+  if (panel && panel.classList.contains("show")) {
     renderCart();
   }
 }
 
-// Render Isi Keranjang (Perbaikan Tata Letak Card yang Jauh Lebih Rapi)
+// Render Isi Keranjang
 function renderCart() {
   const cartContainer = document.getElementById("cartItemContainer");
   const cartTotal = document.getElementById("cartTotal");
@@ -107,13 +113,11 @@ function renderCart() {
     const subtotal = item.price * item.qty;
     grandTotal += subtotal;
 
-    // Menggunakan Flexbox murni agar tidak bentrok di layar sempit
     cartContainer.innerHTML += `
       <div class="card border-0 shadow-sm rounded-4 mb-2 overflow-hidden bg-white">
         <div class="card-body p-3 p-md-4">
           <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
             
-            <!-- Info Produk (Kiri) -->
             <div class="d-flex align-items-center gap-3">
               <img src="${item.img}" class="rounded-3 shadow-sm border" style="width: 80px; height: 80px; object-fit: cover;" alt="${item.name}" onerror="this.src='images/workshop.jpg'">
               <div>
@@ -122,27 +126,22 @@ function renderCart() {
               </div>
             </div>
 
-            <!-- Aksi dan Subtotal (Kanan) -->
             <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mt-2 mt-md-0 border-top border-md-none pt-3 pt-md-0">
               
-              <!-- Plus / Minus -->
               <div class="btn-group btn-group-sm shadow-sm" role="group">
                 <button class="btn btn-outline-secondary px-3" onclick="updateQty(${item.id}, -1)">-</button>
                 <button class="btn btn-light border px-3" disabled><b class="text-dark">${item.qty}</b></button>
                 <button class="btn btn-outline-secondary px-3" onclick="updateQty(${item.id}, 1)">+</button>
               </div>
 
-              <!-- Subtotal Harga Desktop -->
               <div class="fw-bold text-dark-brown text-end d-none d-md-block" style="width: 120px;">
                 ${formatRupiah(subtotal)}
               </div>
 
-              <!-- Tombol Hapus -->
               <button class="btn btn-outline-danger btn-sm px-3 shadow-sm" onclick="removeFromCart(${item.id})">
                 Hapus
               </button>
               
-              <!-- Subtotal Harga Mobile (Pisah Baris di HP) -->
               <div class="w-100 text-end fw-bold text-dark-brown d-block d-md-none mt-1">
                 Total: ${formatRupiah(subtotal)}
               </div>

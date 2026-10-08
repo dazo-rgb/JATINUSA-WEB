@@ -45,25 +45,27 @@
       </div>
 
       <!-- ========================================== -->
-      <!-- PANEL KERANJANG BELANJA (CART) -->
+      <!-- PANEL KERANJANG BELANJA (CART) DENGAN ANIMASI -->
       <!-- ========================================== -->
-      <div id="cartPanel" class="d-none bg-warm-white p-3 p-md-4 rounded-4 shadow border mb-4 mb-lg-5">
-        <!-- Header Panel dengan Tombol X -->
-        <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
-          <h4 class="fw-bold text-dark-brown m-0">🛒 Keranjang Belanja</h4>
-          <!-- Tombol X menggunakan class btn-close bawaan Bootstrap -->
-          <button type="button" class="btn-close shadow-none" aria-label="Tutup Panel" onclick="toggleCartPanel()"></button>
-        </div>
+      <!-- Wrapper 'collapse' ini yang akan memberikan efek smooth turun ke bawah -->
+      <div class="collapse mb-4 mb-lg-5" id="collapseCart">
+        <div id="cartPanel" class="bg-warm-white p-3 p-md-4 rounded-4 shadow border">
+          <!-- Header Panel dengan Tombol X -->
+          <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+            <h4 class="fw-bold text-dark-brown m-0">🛒 Keranjang Belanja</h4>
+            <button type="button" class="btn-close shadow-none" aria-label="Tutup Panel" onclick="toggleCartPanel()"></button>
+          </div>
 
-        <!-- Wadah Item Keranjang (Berbasis Card) -->
-        <div id="cartItemContainer" class="d-flex flex-column gap-3 mb-4">
-          <!-- Item keranjang (Card) akan dirender di sini oleh JavaScript -->
-        </div>
+          <!-- Wadah Item Keranjang (Berbasis Card) -->
+          <div id="cartItemContainer" class="d-flex flex-column gap-3 mb-4">
+            <!-- Item keranjang (Card) akan dirender di sini oleh JavaScript -->
+          </div>
 
-        <!-- Bagian Total & Checkout -->
-        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center pt-3 border-top gap-3">
-          <h4 class="fw-bold mb-0 text-dark-brown text-center text-md-start w-100 w-md-auto">Total: <span id="cartTotal">Rp 0</span></h4>
-          <button class="btn btn-success px-4 py-2 fw-bold shadow-sm w-100 w-md-auto" onclick="checkoutCart()">Proses Pesanan (Checkout)</button>
+          <!-- Bagian Total & Checkout -->
+          <div class="d-flex flex-column flex-md-row justify-content-between align-items-center pt-3 border-top gap-3">
+            <h4 class="fw-bold mb-0 text-dark-brown text-center text-md-start w-100 w-md-auto">Total: <span id="cartTotal">Rp 0</span></h4>
+            <button class="btn btn-success px-4 py-2 fw-bold shadow-sm w-100 w-md-auto" onclick="checkoutCart()">Proses Pesanan (Checkout)</button>
+          </div>
         </div>
       </div>
       <!-- ========================================== -->
