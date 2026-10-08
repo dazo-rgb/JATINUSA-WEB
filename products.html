@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
+    <!-- Navigasi -->
     <nav class="navbar navbar-expand-lg bg-cream border-bottom py-3">
       <div class="container">
         <a class="navbar-brand fs-4 fw-bold text-dark-brown" href="index.html">JATINUSA</a>
@@ -23,63 +24,61 @@
             <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
             <li class="nav-item"><a class="nav-link" href="estimator.html">Estimator</a></li>
           </ul>
-          <div class="text-center">
-            <a href="login.html" class="btn btn-jatinusa px-4">Login</a>
+          <div class="text-center mt-2 mt-lg-0">
+            <a href="login.html" class="btn btn-jatinusa px-4 w-100 w-lg-auto">Login</a>
           </div>
         </div>
       </div>
     </nav>
 
     <main class="container py-4 py-lg-5">
+      <!-- Header Halaman Produk -->
       <div class="text-center mb-4 mb-lg-5">
         <h2 class="fw-bold fs-3 fs-lg-2">Produk & Layanan</h2>
-        <p class="text-secondary small fs-lg-6 px-3">Pilihan furniture kayu jati berkualitas untuk rumah, kantor, dan lainnya.</p>
+        <p class="text-secondary small fs-md-6 px-3">Pilihan furniture kayu jati berkualitas untuk rumah, kantor, dan lainnya.</p>
+
+        <!-- Tombol Buka/Tutup Keranjang -->
+        <button class="btn btn-outline-dark mt-3 fw-bold position-relative px-4 py-2 w-100 w-md-auto d-md-inline-block" onclick="toggleCartPanel()">
+          🛒 Lihat Keranjang Belanja
+          <span id="cartBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none"> 0 </span>
+        </button>
       </div>
 
-      <div class="row g-3 g-lg-4">
-        <!-- Product 1 -->
-        <div class="col-lg-4 col-md-6 col-12">
-          <div class="card h-100 border-0 shadow-sm bg-warm-white">
-            <img src="images/dining-table.jpg" class="card-img-top rounded-top-3 w-100" style="object-fit: cover; aspect-ratio: 4/3" alt="Dining Table" />
-            <div class="card-body text-center p-4">
-              <h5 class="card-title fw-bold">Dining Table</h5>
-              <p class="card-text text-secondary small">Meja makan kayu jati desain minimalis.</p>
-              <h6 class="fw-bold mb-3">Rp 7.500.000</h6>
-              <button class="btn btn-jatinusa w-100" onclick="showProductDetail('Dining Table')">Lihat Detail</button>
-            </div>
-          </div>
+      <!-- ========================================== -->
+      <!-- PANEL KERANJANG BELANJA (CART) -->
+      <!-- ========================================== -->
+      <div id="cartPanel" class="d-none bg-warm-white p-3 p-md-4 rounded-4 shadow border mb-4 mb-lg-5">
+        <!-- Header Panel dengan Tombol X -->
+        <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+          <h4 class="fw-bold text-dark-brown m-0">🛒 Keranjang Belanja</h4>
+          <!-- Tombol X menggunakan class btn-close bawaan Bootstrap -->
+          <button type="button" class="btn-close shadow-none" aria-label="Tutup Panel" onclick="toggleCartPanel()"></button>
         </div>
-        <!-- Product 2 -->
-        <div class="col-lg-4 col-md-6 col-12">
-          <div class="card h-100 border-0 shadow-sm bg-warm-white">
-            <img src="images/coffee-table.jpg" class="card-img-top rounded-top-3 w-100" style="object-fit: cover; aspect-ratio: 4/3" alt="Coffee Table" />
-            <div class="card-body text-center p-4">
-              <h5 class="card-title fw-bold">Coffee Table</h5>
-              <p class="card-text text-secondary small">Meja tamu elegan dan fungsional.</p>
-              <h6 class="fw-bold mb-3">Rp 3.500.000</h6>
-              <button class="btn btn-jatinusa w-100" onclick="showProductDetail('Coffee Table')">Lihat Detail</button>
-            </div>
-          </div>
+
+        <!-- Wadah Item Keranjang (Berbasis Card) -->
+        <div id="cartItemContainer" class="d-flex flex-column gap-3 mb-4">
+          <!-- Item keranjang (Card) akan dirender di sini oleh JavaScript -->
         </div>
-        <!-- Product 3 -->
-        <div class="col-lg-4 col-md-6 col-12">
-          <div class="card h-100 border-0 shadow-sm bg-warm-white">
-            <img src="images/bed.jpg" class="card-img-top rounded-top-3 w-100" style="object-fit: cover; aspect-ratio: 4/3" alt="Bed Frame" />
-            <div class="card-body text-center p-4">
-              <h5 class="card-title fw-bold">Bed Frame</h5>
-              <p class="card-text text-secondary small">Rangka tempat tidur kuat & tahan lama.</p>
-              <h6 class="fw-bold mb-3">Rp 9.000.000</h6>
-              <button class="btn btn-jatinusa w-100" onclick="showProductDetail('Bed Frame')">Lihat Detail</button>
-            </div>
-          </div>
+
+        <!-- Bagian Total & Checkout -->
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center pt-3 border-top gap-3">
+          <h4 class="fw-bold mb-0 text-dark-brown text-center text-md-start w-100 w-md-auto">Total: <span id="cartTotal">Rp 0</span></h4>
+          <button class="btn btn-success px-4 py-2 fw-bold shadow-sm w-100 w-md-auto" onclick="checkoutCart()">Proses Pesanan (Checkout)</button>
         </div>
+      </div>
+      <!-- ========================================== -->
+
+      <!-- WADAH PRODUK (KATALOG TOKO) -->
+      <div class="row g-3 g-lg-4 justify-content-center" id="dynamicProductContainer">
+        <!-- Diisi secara dinamis oleh JavaScript -->
       </div>
     </main>
 
-    <!-- Footer Simple untuk halaman selain Home -->
+    <!-- Footer -->
     <footer class="bg-dark-brown text-white py-4 mt-5 text-center">
       <p class="mb-0 small">© 2026 Jatinusa. Crafted by Nature, Made to Last.</p>
     </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
   </body>
